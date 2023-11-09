@@ -52,4 +52,6 @@ backend jollysinao.tech-backend
         redirect scheme https if { ssl_fc }
         server 404886-web-01 54.237.72.129:80 check
         server 404886-web-02 100.26.243.71:80 check
-# end of parameters
+
+backend letsencrypt-backend
+    server letsencrypt 127.0.0.1:54321
