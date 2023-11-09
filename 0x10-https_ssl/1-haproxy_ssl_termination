@@ -23,7 +23,7 @@ defaults
         option  httplog
         option  dontlognull
         timeout connect 5000
-        timeout client  50000
+               timeout client  50000
         timeout server  50000
         errorfile 400 /etc/haproxy/errors/400.http
         errorfile 403 /etc/haproxy/errors/403.http
@@ -52,6 +52,4 @@ backend jollysinao.tech-backend
         redirect scheme https if { ssl_fc }
         server 404886-web-01 54.237.72.129:80 check
         server 404886-web-02 100.26.243.71:80 check
-
-backend letsencrypt-backend
-    server letsencrypt 127.0.0.1:54321
+# end of parameters
