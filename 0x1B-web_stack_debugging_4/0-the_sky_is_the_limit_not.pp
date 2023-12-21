@@ -1,12 +1,12 @@
-# fix request limit at nginx
+# Enable the user holberton to login and open files without error
 
-exec { 'fix--for-nginx':
-  command => 'sed -i "s/15/4096/" /etc/default/nginx',
-  path    => '/usr/local/bin/:/bin/'
+exec {'replace':
+  path    => ['/bin', '/usr/bin'],
+  command => 'sudo sed -i "s/ULIMIT=\"-n 15\"/ULIMIT=\"-n 4096\"/" /etc/default/nginx',
+  before  => Exec['restart'],
 }
 
-# Restart Nginx
--> exec { 'nginx-restart':
-  command => 'nginx restart',
-  path    => '/etc/init.d/'
+exec {'restart':
+  path    => ['/bin', '/usr/bin'],
+  command => 'sudo service nginx restart',
 }
